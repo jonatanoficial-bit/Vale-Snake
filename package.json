@@ -1,0 +1,10 @@
+{
+  "name": "vale-snake",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check js/main.js && node --check js/game/engine.js && node --check js/render/canvas.js"
+  }
+}

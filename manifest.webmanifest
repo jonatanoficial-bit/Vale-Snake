@@ -1,0 +1,14 @@
+{
+  "name": "Vale Snake - Templo Esquecido",
+  "short_name": "Vale Snake",
+  "description": "Um Snake arcade de ruínas tropicais, feito pela Vale Games.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#102932",
+  "theme_color": "#102932",
+  "orientation": "any",
+  "icons": [
+    { "src": "./assets/brand/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
