@@ -1,4 +1,4 @@
-# QA - Vale Snake v1.0.0
+# QA - Vale Snake v1.0.2
 
 ## Checks automatizados
 
@@ -12,6 +12,7 @@
 - Swipe, D-pad e setas/WASD direcionam a cobra sem aceitar reversão imediata.
 - HUD mostra pontuação e tempo; recordes/XP sobrevivem ao recarregamento pelo `localStorage`.
 - PWA inclui manifest e service worker com app shell em cache depois da primeira abertura.
+- Calibração v1.0.2: Configurações oferece Lenta, Normal e Rápida. Lenta é o padrão e aplica multiplicador de 0,7 a cada dificuldade; aceleração limitada a 0,45 célula por segundo.
 
 ## Limites conhecidos
 

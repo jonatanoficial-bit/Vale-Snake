@@ -3,7 +3,7 @@ import { SAVE_KEY } from './config.js';
 const defaults = () => ({
   schemaVersion: 1, createdAt: Date.now(), lastPlayedAt: null, totalXp: 0, level: 1,
   totalGames: 0, totalFruits: 0, highScores: {}, leaderboardLocal: [],
-  settings: { alias: 'Jogador', sound: true, vibration: true, dpadOpacity: 100 }
+  settings: { alias: 'Jogador', sound: true, vibration: true, dpadOpacity: 100, gameSpeed: 'slow' }
 });
 export function getLevel(totalXp) { return Math.max(1, Math.floor((1 + Math.sqrt(1 + (totalXp * 8 / 100))) / 2)); }
 export function xpForLevel(level) { return 100 * (level - 1) * level / 2; }
@@ -17,6 +17,7 @@ export function loadProfile() {
     if (!value || typeof value !== 'object') throw new Error('invalid profile');
     const merged = { ...defaults(), ...value, highScores: { ...(value.highScores || {}) }, leaderboardLocal: Array.isArray(value.leaderboardLocal) ? value.leaderboardLocal : [], settings: { ...defaults().settings, ...(value.settings || {}) } };
     merged.settings.alias = sanitizeAlias(merged.settings.alias);
+    if (!['slow', 'normal', 'fast'].includes(merged.settings.gameSpeed)) merged.settings.gameSpeed = 'slow';
     merged.level = getLevel(Number(merged.totalXp) || 0);
     return merged;
   } catch { return defaults(); }

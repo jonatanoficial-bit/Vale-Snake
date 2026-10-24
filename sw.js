@@ -1,4 +1,4 @@
-const CACHE = 'vale-snake-v1.0.0';
+const CACHE = 'vale-snake-v1.0.2';
 const APP_SHELL = [
   './', './index.html', './404.html', './manifest.webmanifest', './css/base.css', './css/layout.css',
   './js/main.js', './js/config.js', './js/game/engine.js', './js/input.js', './js/render/canvas.js',

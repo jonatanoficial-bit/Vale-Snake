@@ -95,6 +95,7 @@ export function advanceTimer(round, elapsedMs) {
 }
 
 export function tickMs(round) {
-  const bonus = Math.min(round.fruits * .11, 2.2);
+  // Crescimento gradual: mesmo rodadas longas preservam tempo para reagir no touch.
+  const bonus = Math.min(round.fruits * .025, .45);
   return 1000 / (round.speedCellsPerSecond + bonus);
 }

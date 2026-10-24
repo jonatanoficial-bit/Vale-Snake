@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { advanceRound, advanceTimer, beginRound, createRound, enqueueDirection, randomFreeCell } from '../js/game/engine.js';
+import { effectiveSpeed, SPEED_PRESETS } from '../js/config.js';
+import { advanceRound, advanceTimer, beginRound, createRound, enqueueDirection, randomFreeCell, tickMs } from '../js/game/engine.js';
 
 const grid = { cols: 7, rows: 7 };
 const fixedRandom = () => 0;
@@ -50,4 +51,16 @@ test('ends classic run at wall and never produces food when board is full', () =
 
 test('time attack ends precisely at zero', () => {
   const round = createRound({ mode: 'time', grid, random: fixedRandom }); beginRound(round); assert.equal(advanceTimer(round, 90000), true); assert.equal(round.timeRemainingMs, 0); assert.equal(round.endReason, 'time');
+});
+
+test('speed progression stays deliberately slow even after a long run', () => {
+  const round = runningRound(); round.speedCellsPerSecond = 2; round.fruits = 100;
+  assert.equal(tickMs(round), 1000 / 2.45);
+});
+
+test('the global speed setting defaults to the slowest pace and offers three choices', () => {
+  assert.deepEqual(Object.keys(SPEED_PRESETS), ['slow', 'normal', 'fast']);
+  assert.equal(effectiveSpeed('normal'), 1.4);
+  assert.equal(effectiveSpeed('normal', 'normal'), 2);
+  assert.equal(effectiveSpeed('normal', 'fast'), 2.7);
 });
